@@ -14,13 +14,20 @@ function BlogList() {
 
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(15)
+//number of blongs on page
+  function pageRow(pageSize){
+    setPageSize(parseInt(pageSize))
+    setLastBlog(pageSize)
+    setFirstBlog(0)
+    setCurrentPage(1)
+  }
 
   const setPageRangeVals = (currentPage, lastUpdate,firstUpdate)=>{
     setCurrentPage(currentPage)
     setLastBlog(lastUpdate)
     setFirstBlog(firstUpdate)
   }
-
+//move from page to page by clicking a number
   const updatePage = (currentPage) =>{
     let lastUpdate = currentPage*pageSize
     let fistUpdate = lastUpdate - pageSize
@@ -36,7 +43,7 @@ function BlogList() {
         pageSize={pageSize}
         pageSizeOptions={PAGE_SIZES}
         onPageChange={updatePage}
-        onPageSizeOptionChange={setPageRangeVals}
+        onPageSizeOptionChange={pageRow}
       />
       <ul
         // Do not remove the aria-label below, it is used for Hatchways automation.
