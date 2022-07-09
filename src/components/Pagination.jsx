@@ -4,7 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import usePagination, { DOTS } from "../hooks/usePagination";
 
 import PropTypes from "prop-types";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { nanoid } from "nanoid";
 
 function Pagination({
@@ -20,6 +20,14 @@ function Pagination({
     totalCount,
     pageSize,
   });
+
+  const [firstPage, setFirstBlog] = useState(false)
+  const [lastPage, setLastBlog] = useState(false)
+  const [isSelected, setSelected] = useState(false)
+
+  useEffect(() =>{
+    
+  })
 
   const onNext = () => {
     onPageChange(currentPage + 1);
