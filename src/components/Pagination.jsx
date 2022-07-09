@@ -21,12 +21,14 @@ function Pagination({
     pageSize,
   });
 
-  const [firstPage, setFirstBlog] = useState(false)
-  const [lastPage, setLastBlog] = useState(false)
+  const [firstBlog, setFirstBlog] = useState(false)
+  const [lastBlog, setLastBlog] = useState(false)
   const [isSelected, setSelected] = useState(false)
 
   useEffect(() =>{
-    
+    currentPage == 1? setFirstBlog(true) : setFirstBlog(false)
+   //for lastPage 
+    currentPage == Math.ceil(totalCount/pageSize) ? setLastBlog(true) : setLastBlog(false)
   })
 
   const onNext = () => {
@@ -50,7 +52,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          disabled={firstBlog} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
@@ -92,7 +94,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={false} // change this line to disable a button.
+          disabled={lastBlog} // change this line to disable a button.
         >
           <ChevronRightIcon />
         </button>
